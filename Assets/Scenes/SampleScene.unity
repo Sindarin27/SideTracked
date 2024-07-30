@@ -19241,6 +19241,7 @@ MonoBehaviour:
   leftButton: {fileID: 1019535939}
   rightButton: {fileID: 462208562}
   clearButton: {fileID: 1163326303}
+  quitButton: {fileID: 238722642}
 --- !u!224 &1828469622
 RectTransform:
   m_ObjectHideFlags: 0

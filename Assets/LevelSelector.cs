@@ -16,12 +16,14 @@ namespace DefaultNamespace
         public GameObject leftButton;
         public GameObject rightButton;
         public GameObject clearButton;
+        public GameObject quitButton;
 
         private void UpdateButtons()
         {
             leftButton.SetActive(previewingLevel.index != 0);
             rightButton.SetActive(previewingLevel.index < Math.Min(levels.Length - 1, PlayerPrefs.GetInt("maxLevel", 0)));
             clearButton.SetActive(PlayerPrefs.GetInt("maxLevel", 0) > 0);
+            quitButton.SetActive(Application.platform != RuntimePlatform.WebGLPlayer);
         }
         
         private void OnEnable()
@@ -101,6 +103,8 @@ namespace DefaultNamespace
             // Application.Quit() does not work in the editor so
             // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
             UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_WEBGL
+            Debug.LogError("Tried to quit a WebGL game");
 #else
         Application.Quit();
 #endif
